@@ -1,0 +1,64 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <include android:id="@+id/compassToolbar"
+        layout="@layout/app_toolbar"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/app_background">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+
+            <fragment android:name="com.bernot.xavier.compassproject.view.fragments.RotatingCompassFragment"
+                android:id="@+id/rotatingCompassFragment"
+                android:layout_weight="1"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="-5dp"
+                />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <fragment android:name="com.bernot.xavier.compassproject.view.fragments.TargetInformationsFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/targetInfosFragment"
+                    android:layout_marginTop="35dp"/>
+
+                <ImageButton
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/target"
+                    android:layout_gravity="end"
+                    android:background="@drawable/fab_bkg_selector"
+                    android:onClick="destChoiceButtonOnclick"
+                    />
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:background="@drawable/drop_shadow"
+            android:layout_marginTop="-3dp"/>
+    </FrameLayout>
+
+</LinearLayout>

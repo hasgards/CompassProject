@@ -1,0 +1,15 @@
+<resources>
+
+    <!--Toolbar-->
+    <style name="Widget.CompassProject.Toolbar" parent="Widget.AppCompat.ActionBar">
+        <item name="android:background">@color/primary</item>
+        <item name="theme">@style/ThemeOverlay.CompassProject.ActionBar</item>
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+        <item name="colorControlNormal">@color/icons</item>
+    </style>
+
+    <style name="ThemeOverlay.CompassProject.ActionBar" parent="ThemeOverlay.AppCompat.ActionBar">
+        <item name="android:textColorPrimary">@color/text_color_primary_Inverse</item>
+    </style>
+
+</resources>

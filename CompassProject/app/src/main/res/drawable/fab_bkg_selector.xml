@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:state_enabled="false"
+        android:drawable="@drawable/fab_disabled_bkg"/>
+    <item
+        android:state_pressed="true"
+        android:state_enabled="true"
+        android:drawable="@drawable/fab_pressed_bkg"/>
+    <item
+        android:state_enabled="true"
+        android:drawable="@drawable/fab_enabled_bgk"/>
+</selector>

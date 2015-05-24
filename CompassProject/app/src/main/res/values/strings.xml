@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">Compass Project</string>
+
+    <string name="action_about">About</string>
+
+    <string name="common_warning">Warning</string>
+    <string name="common_warning_geoloc">To use this app, please activate the GPS</string>
+
+    <string name="compass_set_destination">Set Destination</string>
+    <string name="compass_coords">Lat. : %1$1.6f Lon. : %2$1.6f </string>
+    <string name="compass_distance">%1$1.3f km</string>
+    <string name="compass_search">Determining your localisation &#8230;</string>
+    <string name="compass_distance_default">0.000 Km</string>
+
+
+    <string name="about_title">About</string>
+    <string name="about_subtitle">About %s</string>
+    <string name="about_text">Created by Xavier Bernot</string>
+    <string name="about_version">Version : %s</string>
+    <string name="about_version_error">Cannot find package version</string>
+
+    <string name="destchoice_title">Destination choice</string>
+    <string name="destchoice_subtitle">Enter destination coordinates</string>
+    <string name="destchoice_Latitude">Destination Latitude :</string>
+    <string name="destchoice_Longitude">Destination Longitude :</string>
+    <string name="destchoice_preset">Preset values :</string>
+    <string name="destchoice_error_lat">Please provide a number between -90 and +90 .</string>
+    <string name="destchoice_error_lon">Please provide a number between -180 and +180.</string>
+    <string name="destchoice_stras_cathedral">Strasbourg Cathedral, FRANCE</string>
+    <string name="destchoice_Ratusz">Ratusz, Poznan, POLAND</string>
+
+    <string name="destchoice_OK">OK</string>
+    <string name="destchoice_Cancel">Cancel</string>
+
+    <string name="warning_title">Warning</string>
+    <string name="warning_gps_disabled">Please enable GPS !</string>
+
+    <string name="help_title">Instructions</string>
+    <string name="help_subtitle1">Welcome !</string>
+    <string name="help_text1">In order to calibrate the compass, please go to the main (compass) screen and rotate your phone around the 3 possible axis. Once this is done, compass should be stable.</string>
+    <string name="help_text2">Set your target destination using the round button on the main screen.</string>
+    <string name="help_text3">Follow the arrow on the compass to reach you destination !</string>
+    <string name="help_ok">Got it !</string>
+
+
+
+</resources>
