@@ -1,14 +1,12 @@
 package com.bernot.xavier.compassproject.view.fragments;
 
-import android.graphics.Matrix;
-import android.graphics.RectF;
+import android.location.Location;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.app.Fragment;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.bernot.xavier.compassproject.R;
 import com.bernot.xavier.compassproject.model.CGeoCoordinates;
@@ -78,7 +76,14 @@ public class RotatingCompassFragment extends Fragment
                 && pDestination != null
                 && pDeviceOrientation <= 180f && pDeviceOrientation >= -180f)
         {
-            m_LastKnownLocation = new CGeoCoordinates(pTracker.getLocation());
+
+            Location currentLocation = pTracker.getLocation();
+            if(currentLocation == null)
+            {
+                return false;
+            }
+
+            m_LastKnownLocation = new CGeoCoordinates(currentLocation);
 
             float destOrientation = m_LastKnownLocation.bearingTo(pDestination) + pDeviceOrientation;
 
