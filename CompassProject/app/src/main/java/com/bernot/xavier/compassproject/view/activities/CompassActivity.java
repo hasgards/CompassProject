@@ -8,7 +8,6 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.TextView;
 
 import com.bernot.xavier.compassproject.R;
 import com.bernot.xavier.compassproject.model.CGeoCoordinates;
@@ -50,7 +49,7 @@ public class CompassActivity extends CActivity implements SensorEventListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.compas);
+        setContentView(R.layout.activity_compass);
 
         //Toolbar set
         Toolbar toolbar = (Toolbar)findViewById(R.id.compassToolbar);

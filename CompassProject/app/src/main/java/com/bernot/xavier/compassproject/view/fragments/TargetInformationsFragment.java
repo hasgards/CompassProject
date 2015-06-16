@@ -5,12 +5,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bernot.xavier.compassproject.R;
 import com.bernot.xavier.compassproject.model.CGeoCoordinates;
-import com.bernot.xavier.compassproject.model.CSession;
 
 import static java.lang.String.format;
 
@@ -29,7 +27,7 @@ public class TargetInformationsFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.target_infos, container, false);
+        View view = inflater.inflate(R.layout.fragment_target_infos, container, false);
 
         m_TargetTextView = (TextView)view.findViewById(R.id.targetTextView);
         m_DistanceTextView = (TextView)view.findViewById(R.id.distanceTextView);

@@ -38,7 +38,7 @@ public class RotatingCompassFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.rotating_compass, container, false);
+        View view = inflater.inflate(R.layout.fragment_rotating_compass, container, false);
 
         m_CompassImage = (ImageView)view.findViewById(R.id.compassImage);
         m_ArrowImage = (ImageView)view.findViewById(R.id.arrowImage);

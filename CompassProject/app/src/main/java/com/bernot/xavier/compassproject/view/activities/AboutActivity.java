@@ -19,7 +19,7 @@ public class AboutActivity extends CActivity
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.about);
+        setContentView(R.layout.activity_about);
 
         Toolbar toolbar = (Toolbar)findViewById(R.id.aboutToolbar);
         toolbar.setTitle(R.string.about_title);

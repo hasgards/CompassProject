@@ -25,7 +25,7 @@ public class DestinationChoiceActivity extends CActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.destination_choice);
+        setContentView(R.layout.activity_destination_choice);
 
         //Toolbar standard
         Toolbar toolbar = (Toolbar)findViewById(R.id.compassToolbar);

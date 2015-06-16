@@ -17,7 +17,7 @@ public class HelpActivity extends CActivity
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.help);
+        setContentView(R.layout.activity_help);
 
         Toolbar toolbar = (Toolbar)findViewById(R.id.helpToolbar);
         toolbar.setTitle(R.string.help_title);
