@@ -11,43 +11,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_margin="10dp">
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="50dp"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:layout_alignParentBottom="true"
-                android:background="@color/app_background">
-
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/destchoice_Cancel"
-                    android:layout_gravity="bottom"
-                    android:onClick="cancelOnClick"
-                    android:layout_weight="1"
-                    android:layout_marginRight="2dp"
-                    />
-
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/destchoice_OK"
-                    android:layout_gravity="bottom"
-                    android:onClick="okOnClick"
-                    android:layout_marginLeft="2dp"/>
-            </LinearLayout>
-
             <ScrollView
                 android:layout_width="fill_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="50dp"
                 android:background="@color/app_background">
 
                 <LinearLayout
@@ -62,6 +28,17 @@
                         android:layout_marginTop="@dimen/abc_control_padding_material"
                         style="@style/Base.TextAppearance.AppCompat.Title"
                         />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/destchoice_name"
+                        android:layout_marginTop="@dimen/abc_control_padding_material"/>
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/nameEditText"
+                        android:inputType="text"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -85,30 +62,18 @@
                         android:id="@+id/longitudeEditText"
                         android:inputType="numberDecimal|numberSigned"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/destchoice_preset"
-                        android:layout_marginTop="@dimen/abc_control_padding_material"/>
                     <Button
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/destchoice_Ratusz"
-                        android:onClick="poznanPresetOnClick"/>
-
-                    <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/destchoice_stras_cathedral"
-                        android:onClick="strasbourgPresetOnClick"/>
+                        android:text="@string/destchoice_use_current"
+                        android:onClick="currentPositionOnClick"/>
 
                 </LinearLayout>
             </ScrollView>
-        </RelativeLayout>
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="6dp"
+            android:layout_height="@dimen/toolbar_drop_shadow_height"
             android:background="@drawable/drop_shadow"
             android:layout_marginTop="-3dp"/>
     </FrameLayout>

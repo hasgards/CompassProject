@@ -10,6 +10,18 @@ public class CGeoCoordinates extends Location
     public static final CGeoCoordinates STRASBOURG_CATHEDRAL = new CGeoCoordinates(48.581892,7.751037);
     public static final CGeoCoordinates RATUSZ_POZNAN = new CGeoCoordinates(52.408586,16.933999);
 
+    private String m_Name = "";
+    public String getName() {
+        return m_Name;
+    }
+    public boolean setName(String pName) {
+        if(!pName.equals(""))
+        {
+            this.m_Name = pName;
+            return true;
+        }
+        return false;
+    }
 
     public boolean setLatitude(String pLatitude)
     {
@@ -23,7 +35,6 @@ public class CGeoCoordinates extends Location
             return false;
         }
     }
-
 
     public boolean setLongitude(String pLongitude)
     {
@@ -65,4 +76,11 @@ public class CGeoCoordinates extends Location
         setLongitude(pLongitude);
     }
 
+    public CGeoCoordinates(String pName, double pLatitude, double pLongitude)
+    {
+        super("");
+        setName(pName);
+        setLatitude(pLatitude);
+        setLongitude(pLongitude);
+    }
 }

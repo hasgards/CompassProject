@@ -14,6 +14,7 @@ import com.bernot.xavier.compassproject.model.CGeoCoordinates;
 import com.bernot.xavier.compassproject.model.CSession;
 import com.bernot.xavier.compassproject.tools.CApplicationSettings;
 import com.bernot.xavier.compassproject.tools.CGPSTracker;
+import com.bernot.xavier.compassproject.view.adapters.DestinationListAdapter;
 import com.bernot.xavier.compassproject.view.fragments.RotatingCompassFragment;
 import com.bernot.xavier.compassproject.view.fragments.TargetInformationsFragment;
 
@@ -161,6 +162,6 @@ public class CompassActivity extends CActivity implements SensorEventListener
      */
     public void destChoiceButtonOnclick(View view)
     {
-        switchActivity(DestinationChoiceActivity.class);
+        switchActivity(DestinationsListActivity.class);
     }
 }

@@ -19,15 +19,17 @@
     <string name="about_version">Version : %s</string>
     <string name="about_version_error">Cannot find package version</string>
 
-    <string name="destchoice_title">Destination choice</string>
-    <string name="destchoice_subtitle">Enter destination coordinates</string>
+    <string name="destchoice_title">%s place</string>
+    <string name="destchoice_new">New</string>
+    <string name="destchoice_edit">Edit</string>
+    <string name="destchoice_subtitle">Enter destination data</string>
+    <string name="destchoice_name">Destination name :</string>
     <string name="destchoice_Latitude">Destination Latitude :</string>
     <string name="destchoice_Longitude">Destination Longitude :</string>
-    <string name="destchoice_preset">Preset values :</string>
+    <string name="destchoice_error_name">Please provide valid name</string>
+    <string name="destchoice_use_current">Use current position</string>
     <string name="destchoice_error_lat">Please provide a number between -90 and +90 .</string>
     <string name="destchoice_error_lon">Please provide a number between -180 and +180.</string>
-    <string name="destchoice_stras_cathedral">Strasbourg Cathedral, FRANCE</string>
-    <string name="destchoice_Ratusz">Ratusz, Poznan, POLAND</string>
 
     <string name="destchoice_OK">OK</string>
     <string name="destchoice_Cancel">Cancel</string>
@@ -42,6 +44,8 @@
     <string name="help_text3">Follow the arrow on the compass to reach you destination !</string>
     <string name="help_ok">Got it !</string>
 
-
+    <string name="destList_title">My places</string>
+    <string name="destlist_edit">edit</string>
+    <string name="destlist_delete">delete</string>
 
 </resources>

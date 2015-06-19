@@ -23,4 +23,12 @@ public class CSession
     public void setDestinationCoordinates(CGeoCoordinates pDestinationCoordinates) {
         this.m_DestinationCoordinates = pDestinationCoordinates;
     }
+
+    private int m_CoordinatesToEditPosition = -1;
+    public int getCoordinatesToEditPosition() {
+        return m_CoordinatesToEditPosition;
+    }
+    public void setCoordinatesToEditPosition(int pCoordinatesToEditPosition) {
+        this.m_CoordinatesToEditPosition = pCoordinatesToEditPosition;
+    }
 }

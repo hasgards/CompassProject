@@ -56,7 +56,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="6dp"
+            android:layout_height="@dimen/toolbar_drop_shadow_height"
             android:background="@drawable/drop_shadow"
             android:layout_marginTop="-3dp"/>
     </FrameLayout>
