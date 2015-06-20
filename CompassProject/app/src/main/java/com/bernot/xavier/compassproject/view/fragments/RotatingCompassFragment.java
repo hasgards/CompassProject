@@ -61,6 +61,15 @@ public class RotatingCompassFragment extends Fragment
         m_IsActive = false;
     }
 
+
+    /**
+     * get de the last orientation
+     * @return last orientation
+     */
+    public float getOrientation()
+    {
+        return m_PreviousOrientation;
+    }
     /**
      * Rotate the compass from current location, destination location and device orientation
      * @param pTracker GPS tracker that permit to get current device information
@@ -97,6 +106,8 @@ public class RotatingCompassFragment extends Fragment
 
         return false;
     }
+
+
 
     /**
      * Set compass rotation from device orientation and destination orientation

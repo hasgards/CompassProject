@@ -8,18 +8,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="30dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="0dp"
         android:id="@+id/distanceTextView"
         android:text="@string/compass_distance_default"
-        android:textSize="42sp"
+        android:textSize="40sp"
         style="@style/Base.TextAppearance.AppCompat.Large.Inverse"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="16sp"
+        android:layout_margin="0dp"
+        android:textColor="@color/app_background"
+        style="@style/Base.TextAppearance.AppCompat.Medium.Inverse"
+        android:id="@+id/targetNameTextView"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        >
+        android:layout_marginTop="20dp">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -32,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:textSize="16sp"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:textColor="@color/app_background"
             style="@style/Base.TextAppearance.AppCompat.Medium.Inverse"
             android:id="@+id/targetTextView"/>
@@ -57,7 +67,7 @@
             android:layout_gravity="center"
             android:text="@string/compass_search"
             android:textSize="16sp"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:textColor="@color/app_background"
             style="@style/Base.TextAppearance.AppCompat.Medium.Inverse"
             android:id="@+id/positionTextView"/>

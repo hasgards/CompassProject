@@ -30,7 +30,6 @@ import static java.lang.String.format;
 public class DestinationListAdapter extends RecyclerView.Adapter<DestinationListAdapter.ViewHolder>
         implements View.OnClickListener, View.OnLongClickListener, View.OnTouchListener
 {
-
     ArrayList<CGeoCoordinates> m_GeoCoordinatesList;
     private static Context sContext;
 
@@ -76,6 +75,7 @@ public class DestinationListAdapter extends RecyclerView.Adapter<DestinationList
         final CGeoCoordinates o = m_GeoCoordinatesList.get(position);
         if (o != null) {
 
+            holder.m_TvShortName.setText(o.getShortName());
             holder.m_TvName.setText(String.valueOf(o.getName()));
             holder.m_TvCoordinates.setText(format(sContext.getString(R.string.compass_coords),
                     o.getLatitude(),
@@ -105,9 +105,6 @@ public class DestinationListAdapter extends RecyclerView.Adapter<DestinationList
         {
             this.m_OnClickListener.callback(view, holder.getAdapterPosition(), m_GeoCoordinatesList.get(holder.getAdapterPosition()));
         }
-        /*if (view.getId() == holder.mNameTextView.getId()) {
-            Toast.makeText(sContext, holder.mNameTextView.getText(), Toast.LENGTH_SHORT).show();
-        }*/
     }
 
     // Implement OnLongClick listener.
@@ -121,15 +118,6 @@ public class DestinationListAdapter extends RecyclerView.Adapter<DestinationList
         {
             this.m_OnlongClickListener.callback(view, holder.getAdapterPosition(), m_GeoCoordinatesList.get(holder.getAdapterPosition()));
         }
-        /*if (view.getId() == holder.m_TvName.getId()) {
-            m_Dataset.remove(holder.getPosition());
-
-            // Call this method to refresh the list and display the "updated" list
-            notifyDataSetChanged();
-
-            Toast.makeText(sContext, "Item " + holder.mNameTextView.getText() + " has been removed from list",
-                    Toast.LENGTH_SHORT).show();
-        }*/
         return false;
     }
 
@@ -154,6 +142,8 @@ public class DestinationListAdapter extends RecyclerView.Adapter<DestinationList
 
     // Create the ViewHolder class to keep references to your views
     public static class ViewHolder extends RecyclerView.ViewHolder {
+
+        TextView m_TvShortName;
         TextView m_TvName;
         TextView m_TvCoordinates;
         View m_RootView;
@@ -165,6 +155,7 @@ public class DestinationListAdapter extends RecyclerView.Adapter<DestinationList
         public ViewHolder(View v) {
             super(v);
 
+            m_TvShortName = (TextView) v.findViewById(R.id.dest_short_name);
             m_TvName = (TextView) v.findViewById(R.id.dest_name);
             m_TvCoordinates = (TextView) v.findViewById(R.id.dest_coordinates);
             m_RootView = (View)v.findViewById(R.id.adapter_dest_list_item_root);
@@ -180,74 +171,3 @@ public class DestinationListAdapter extends RecyclerView.Adapter<DestinationList
     }
 }
 
-/*public class DestinationListAdapter extends BaseAdapter implements View.OnCreateContextMenuListener
-{
-    List<CGeoCoordinates> geoCoordinatesList;
-
-    LayoutInflater inflater;
-
-    public DestinationListAdapter(Context context, List<CGeoCoordinates> pCoordList) {
-        inflater = LayoutInflater.from(context);
-        this.geoCoordinatesList = pCoordList;
-    }
-
-    @Override
-    public int getCount() {
-        return geoCoordinatesList.size();
-    }
-
-    @Override
-    public Object getItem(int position) {
-        return geoCoordinatesList.get(position);
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-
-        ViewHolder holder;
-
-        if(convertView == null) {
-            holder = new ViewHolder();
-            convertView = inflater.inflate(R.layout.adapter_destinations_list_item, null);
-
-            holder.tvName = (TextView)convertView.findViewById(R.id.dest_name);
-            holder.tvCoordinates = (TextView)convertView.findViewById(R.id.dest_coordinates);
-
-            convertView.setTag(holder);
-        } else {
-            holder = (ViewHolder) convertView.getTag();
-        }
-
-        final CGeoCoordinates o = geoCoordinatesList.get(position);
-        if (o != null) {
-
-            holder.tvName.setText(String.valueOf(o.getName()));
-            holder.tvCoordinates.setText(format(convertView.getContext().getString(R.string.compass_coords),
-                    o.getLatitude(),
-                    o.getLongitude()));
-
-            //ImageButton button = (ImageButton) convertView.findViewById(R.id.button);
-            //button.setImageResource(R.drawable.icon);
-            convertView.setOnCreateContextMenuListener(this);
-            //button.setOnCreateContextMenuListener(this);
-
-        }
-
-        return convertView;
-    }
-
-    @Override
-    public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
-        //empty implementation
-    }
-
-    private class ViewHolder {
-        TextView tvName;
-        TextView tvCoordinates;
-    }
-}*/

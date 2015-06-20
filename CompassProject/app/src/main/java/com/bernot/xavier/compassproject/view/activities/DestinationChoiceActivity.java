@@ -171,25 +171,9 @@ public class DestinationChoiceActivity extends CActivity
     }
 
     /**
-     * Click on poznan Ratusz coordinates
+     * Click on the button to fill data with current position
      * @param view
      */
-    public void poznanPresetOnClick(View view) {
-
-        m_LatEditText.setText(String.valueOf(CGeoCoordinates.RATUSZ_POZNAN.getLatitude()));
-        m_LonEditText.setText(String.valueOf(CGeoCoordinates.RATUSZ_POZNAN.getLongitude()));
-    }
-
-    /**
-     * Click on strasbourg cathedral coordinates
-     * @param view
-     */
-    public void strasbourgPresetOnClick(View view)
-    {
-        m_LatEditText.setText(String.valueOf(CGeoCoordinates.STRASBOURG_CATHEDRAL.getLatitude()));
-        m_LonEditText.setText(String.valueOf(CGeoCoordinates.STRASBOURG_CATHEDRAL.getLongitude()));
-    }
-
     public void currentPositionOnClick(View view)
     {
         CGPSTracker tracker = new CGPSTracker(DestinationChoiceActivity.this);

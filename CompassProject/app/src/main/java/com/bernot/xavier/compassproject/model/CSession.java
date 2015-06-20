@@ -16,7 +16,7 @@ public class CSession
     {
     }
 
-    private CGeoCoordinates m_DestinationCoordinates = CGeoCoordinates.RATUSZ_POZNAN;
+    private CGeoCoordinates m_DestinationCoordinates;
     public CGeoCoordinates getDestinationCoordinates() {
         return m_DestinationCoordinates;
     }

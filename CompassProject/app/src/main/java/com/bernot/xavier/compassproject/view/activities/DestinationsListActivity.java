@@ -63,7 +63,7 @@ public class DestinationsListActivity extends CActivity
 
                 m_CoordinatesSelected = item;
                 m_PositionCoordinatesSelected = position;
-                openContextMenu(view);
+                //openContextMenu(view);
             }
         });
 
@@ -103,6 +103,10 @@ public class DestinationsListActivity extends CActivity
         inflater.inflate(R.menu.menu_dest_list_item, menu);
     }
 
+    /**
+     * Click on "+" button
+     * @param view
+     */
     public void addDestButtonOnclick(View view)
     {
         switchActivity(DestinationChoiceActivity.class);

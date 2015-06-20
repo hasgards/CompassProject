@@ -3,6 +3,7 @@ package com.bernot.xavier.compassproject.tools;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.bernot.xavier.compassproject.Enums.ELengthUnit;
 import com.bernot.xavier.compassproject.model.CGeoCoordinates;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -43,23 +44,38 @@ public class CApplicationSettings {
     }
 
     /*
-   * dest list
+   * destination list
    * */
-    private ArrayList<CGeoCoordinates> m_DestinationsList = new ArrayList<CGeoCoordinates>() {
-        {
-            //label Strength, quatity, number
-            add(new CGeoCoordinates("Paris", 48.8566140, 2.3522219));
-            add(new CGeoCoordinates("London", 51.5073509, -0.1277583));
-            add(new CGeoCoordinates("New York", 40.7127837, -74.0059413));
-            add(new CGeoCoordinates("Amsterdam", 52.3702157, 4.8951679));
-            add(new CGeoCoordinates("Tokyo", 35.6894875, 139.6917064));
-        }
-    };
+    private ArrayList<CGeoCoordinates> m_DestinationsList;
     public ArrayList<CGeoCoordinates> getDestinationList() {
         return m_DestinationsList;
     }
-    public void setIsFirstLaunch(ArrayList<CGeoCoordinates> pDestinationsList, Context pContext) {
+    public void setDestinationList(ArrayList<CGeoCoordinates> pDestinationsList, Context pContext) {
         this.m_DestinationsList = pDestinationsList;
+        saveSettings(pContext);
+    }
+
+    /**
+     * Last destination choosen by user
+     */
+    private CGeoCoordinates m_LastDestinationChoosen;
+    public CGeoCoordinates getLastDestinationChoosen() {
+        return m_LastDestinationChoosen;
+    }
+    public void setLastDestinationChoosen(CGeoCoordinates pLastDestinationChoosen, Context pContext) {
+        this.m_LastDestinationChoosen = pLastDestinationChoosen;
+        saveSettings(pContext);
+    }
+
+    /**
+     * Unit of distance
+     */
+    private ELengthUnit m_Unit = ELengthUnit.KILOMETER;
+    public ELengthUnit getUnit() {
+        return m_Unit;
+    }
+    public void setUnit(ELengthUnit pUnit, Context pContext) {
+        this.m_Unit = pUnit;
         saveSettings(pContext);
     }
 

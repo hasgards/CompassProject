@@ -7,8 +7,10 @@
     <string name="common_warning_geoloc">To use this app, please activate the GPS</string>
 
     <string name="compass_set_destination">Set Destination</string>
+    <string name="compass_to">To: %s</string>
     <string name="compass_coords">Lat. : %1$1.6f Lon. : %2$1.6f </string>
-    <string name="compass_distance">%1$1.3f km</string>
+    <string name="compass_distance_km">%1$1.3f km</string>
+    <string name="compass_distance_mi">%1$1.3f mi</string>
     <string name="compass_search">Determining your localisation &#8230;</string>
     <string name="compass_distance_default">0.000 Km</string>
 
@@ -47,5 +49,64 @@
     <string name="destList_title">My places</string>
     <string name="destlist_edit">edit</string>
     <string name="destlist_delete">delete</string>
+
+    <string name="place_alexandria">Alexandria, Egypt</string>
+    <string name="place_amsterdam">Amsterdam, Netherlands</string>
+    <string name="place_auckland">Auckland, New Zealand</string>
+    <string name="place_berlin">Berlin, Germany</string>
+    <string name="place_beijing">Beijing, China</string>
+    <string name="place_buenos_aires">Buenos Aires, Argentina</string>
+    <string name="place_cape_town">Cape Town, South Africa</string>
+    <string name="place_dublin">Dublin, Ireland</string>
+    <string name="place_geneva">Geneva, Switzerland</string>
+    <string name="place_hong_kong">Hong Kong, China</string>
+    <string name="place_kuala_lumpur">Kuala Lumpur, Malaysia</string>
+    <string name="place_london">London, UK</string>
+    <string name="place_los_angeles">Los Angeles, USA</string>
+    <string name="place_madrid">Madrid, Spain</string>
+    <string name="place_mexico_city">Mexico City, Mexico</string>
+    <string name="place_moscow">Moscow, Russia</string>
+    <string name="place_nairobi">Nairobi, Kenya</string>
+    <string name="place_new_dehli">New Dehli, India</string>
+    <string name="place_new_york">New York, USA</string>
+    <string name="place_paris">Paris, France</string>
+    <string name="place_rabat">Rabat, Morocco</string>
+    <string name="place_rio_de_janeiro">Rio de Janeiro, Brazil</string>
+    <string name="place_riyadh">Riyadh, Saudi Arabia</string>
+    <string name="place_rome">Rome, Italy</string>
+    <string name="place_san_francisco">San Francisco, USA</string>
+    <string name="place_sydney">Sydney, Australia</string>
+    <string name="place_tokyo">Tokyo, Japan</string>
+    <string name="place_toronto">Toronto, Canada</string>
+    <string name="place_vienna">Vienna, Austria</string>
+    <string name="place_warsaw">Warsaw, Poland</string>
+
+
+
+
+
+    add(new CGeoCoordinates("Amsterdam", 52.3702157, 4.8951679));
+    add(new CGeoCoordinates("Alexandria", 31.2003861, 27.1258081));
+    add(new CGeoCoordinates("Auckland", -36.8927479, 174.7634173));
+    add(new CGeoCoordinates("Berlin", 52.5177608, 13.4087306));
+    add(new CGeoCoordinates("Beijing", 39.9042110, 116.4073950));
+    add(new CGeoCoordinates("Buenos Aires", -34.6870063, -58.3652513));
+    add(new CGeoCoordinates("Cape Town", -33.9248685, 18.4240553));
+    add(new CGeoCoordinates("Hong Kong", 22.2819490, 114.1742133));
+    add(new CGeoCoordinates("Kuala Lumpur", 3.1390030, 101.6868550));
+    add(new CGeoCoordinates("London", 51.5073509, -0.1277583));
+    add(new CGeoCoordinates("Los Angeles", 34.0522342, -118.2436849));
+    add(new CGeoCoordinates("Madrid", 40.4167754, -3.7037902));
+    add(new CGeoCoordinates("Moscow", 55.7558260, 37.6173000));
+    add(new CGeoCoordinates("Nairobi", -1.2920659, 36.8219462));
+    add(new CGeoCoordinates("New Dehli", 28.6139391, 77.2090212));
+    add(new CGeoCoordinates("New York", 40.7127837, -74.0059413));
+    add(new CGeoCoordinates("Paris", 48.8566140, 2.3522219));
+    add(new CGeoCoordinates("Rio de Janeiro", -22.9091395, -43.1978732));
+    add(new CGeoCoordinates("San Francisco", 37.7749295, -122.4194155));
+    add(new CGeoCoordinates("Sydney", -33.8830218, 151.1955747));
+    add(new CGeoCoordinates("Tokyo", 35.6894875, 139.6917064));
+    add(new CGeoCoordinates("Vienna", 48.2081743, 16.3738189));
+    add(new CGeoCoordinates("Warsaw", 52.2296756, 21.0122287));
 
 </resources>

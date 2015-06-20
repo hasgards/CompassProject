@@ -14,6 +14,7 @@ import com.bernot.xavier.compassproject.model.CGeoCoordinates;
 import com.bernot.xavier.compassproject.model.CSession;
 import com.bernot.xavier.compassproject.tools.CApplicationSettings;
 import com.bernot.xavier.compassproject.tools.CGPSTracker;
+import com.bernot.xavier.compassproject.tools.CGeoCoordinatesTools;
 import com.bernot.xavier.compassproject.view.adapters.DestinationListAdapter;
 import com.bernot.xavier.compassproject.view.fragments.RotatingCompassFragment;
 import com.bernot.xavier.compassproject.view.fragments.TargetInformationsFragment;
@@ -63,10 +64,6 @@ public class CompassActivity extends CActivity implements SensorEventListener
         m_CompassFragment = (RotatingCompassFragment)getFragmentManager().findFragmentById(R.id.rotatingCompassFragment);
         m_TargetInfosFragment = (TargetInformationsFragment)getFragmentManager().findFragmentById(R.id.targetInfosFragment);
 
-        /*m_TargetTextView = (TextView)findViewById(R.id.targetTextView);
-        m_DistanceTextView = (TextView)findViewById(R.id.distanceTextView);
-        m_PositionTextView = (TextView)findViewById(R.id.positionTextView);*/
-
         //Check if GPS enabled
         if(!m_GPSTracker.canGetLocation()) {
             raiseAlertMessage(getString(R.string.common_warning), getString(R.string.common_warning_geoloc));
@@ -78,7 +75,14 @@ public class CompassActivity extends CActivity implements SensorEventListener
         if(CApplicationSettings.getInstance().isFirstLaunch())
         {
             CApplicationSettings.getInstance().setIsFirstLaunch(false, getApplicationContext());
+            CApplicationSettings.getInstance().setDestinationList(CGeoCoordinatesTools.getCitiesInitialList(getApplicationContext()), getApplicationContext());
+            CSession.getInstance().setDestinationCoordinates(CApplicationSettings.getInstance().getDestinationList().get(0));
             switchActivity(HelpActivity.class);
+        }
+        else
+        {
+            //set the last choosen destination
+            CSession.getInstance().setDestinationCoordinates(CApplicationSettings.getInstance().getLastDestinationChoosen());
         }
 
         //Register listeners
@@ -92,10 +96,20 @@ public class CompassActivity extends CActivity implements SensorEventListener
     protected void onResume() {
         super.onResume();
 
-        //Display localisation
-        m_TargetInfosFragment.updateTargetTextView(CSession.getInstance().getDestinationCoordinates());
-        //Update destination if changed
-        m_CompassFragment.updateDestinationOrientation(CSession.getInstance().getDestinationCoordinates());
+        if(CSession.getInstance().getDestinationCoordinates() != null)
+        {
+            //Display localisation
+            m_TargetInfosFragment.updateTargetTextView(CSession.getInstance().getDestinationCoordinates());
+            //Update destination if changed
+            //m_CompassFragment.updateDestinationOrientation(CSession.getInstance().getDestinationCoordinates());
+
+            //Update only if orientation really changed, compass fragment can provide last known location in this case
+            m_CompassFragment.setOrientation(m_GPSTracker, CSession.getInstance().getDestinationCoordinates(), m_CompassFragment.getOrientation());
+            m_TargetInfosFragment.updateDistanceText(m_CompassFragment.getLastKnownLocation(), CSession.getInstance().getDestinationCoordinates());
+
+            //Save the destination
+            CApplicationSettings.getInstance().setLastDestinationChoosen(CSession.getInstance().getDestinationCoordinates(), getApplicationContext());
+        }
 
         m_IsActive = true;
     }
