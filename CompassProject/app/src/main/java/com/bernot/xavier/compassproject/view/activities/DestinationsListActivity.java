@@ -82,16 +82,40 @@ public class DestinationsListActivity extends CActivity
     @Override
     public boolean onContextItemSelected(MenuItem item) {
 
+        //edit
         if(item.getItemId() == R.id.action_edit)
         {
             CSession.getInstance().setCoordinatesToEditPosition(m_PositionCoordinatesSelected);
             switchActivity(DestinationChoiceActivity.class);
         }
+        //delete
         else if(item.getItemId() == R.id.action_delete)
         {
             CApplicationSettings.getInstance().getDestinationList().remove(m_PositionCoordinatesSelected);
             m_CoordRecyclerView.getAdapter().notifyDataSetChanged();
             CApplicationSettings.saveSettings(this);
+        }
+        //move up
+        else if(item.getItemId() == R.id.action_move_up)
+        {
+            if(m_PositionCoordinatesSelected > 0)
+            {
+                CApplicationSettings.getInstance().getDestinationList().remove(m_PositionCoordinatesSelected);
+                CApplicationSettings.getInstance().getDestinationList().set(m_PositionCoordinatesSelected - 1, m_CoordinatesSelected);
+                m_CoordRecyclerView.getAdapter().notifyDataSetChanged();
+                CApplicationSettings.saveSettings(this);
+            }
+        }
+        //move down
+        else if(item.getItemId() == R.id.action_move_down)
+        {
+            if(m_PositionCoordinatesSelected < CApplicationSettings.getInstance().getDestinationList().size() - 1)
+            {
+                CApplicationSettings.getInstance().getDestinationList().remove(m_PositionCoordinatesSelected);
+                CApplicationSettings.getInstance().getDestinationList().set(m_PositionCoordinatesSelected, m_CoordinatesSelected);
+                m_CoordRecyclerView.getAdapter().notifyDataSetChanged();
+                CApplicationSettings.saveSettings(this);
+            }
         }
         return true;
     }

@@ -44,6 +44,8 @@
     <string name="help_ok">J\'ai compris !</string>
 
     <string name="destList_title">Mes lieux</string>
+    <string name="destlist_up">Monter</string>
+    <string name="destlist_down">Descendre</string>
     <string name="destlist_edit">Modifier</string>
     <string name="destlist_delete">Supprimer</string>
 

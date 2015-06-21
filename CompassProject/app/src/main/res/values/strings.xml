@@ -44,6 +44,8 @@
     <string name="help_ok">Got it !</string>
 
     <string name="destList_title">My places</string>
+    <string name="destlist_up">Move up</string>
+    <string name="destlist_down">Move down</string>
     <string name="destlist_edit">edit</string>
     <string name="destlist_delete">delete</string>
 
