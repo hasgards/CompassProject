@@ -98,7 +98,7 @@ public class DestinationsListActivity extends CActivity
             if(m_PositionCoordinatesSelected > 0)
             {
                 CApplicationSettings.getInstance().getDestinationList().remove(m_PositionCoordinatesSelected);
-                CApplicationSettings.getInstance().getDestinationList().set(m_PositionCoordinatesSelected - 1, m_CoordinatesSelected);
+                CApplicationSettings.getInstance().getDestinationList().add(m_PositionCoordinatesSelected - 1, m_CoordinatesSelected);
                 m_CoordRecyclerView.getAdapter().notifyDataSetChanged();
                 CApplicationSettings.saveSettings(this);
             }
@@ -109,7 +109,7 @@ public class DestinationsListActivity extends CActivity
             if(m_PositionCoordinatesSelected < CApplicationSettings.getInstance().getDestinationList().size() - 1)
             {
                 CApplicationSettings.getInstance().getDestinationList().remove(m_PositionCoordinatesSelected);
-                CApplicationSettings.getInstance().getDestinationList().set(m_PositionCoordinatesSelected, m_CoordinatesSelected);
+                CApplicationSettings.getInstance().getDestinationList().add(m_PositionCoordinatesSelected + 1, m_CoordinatesSelected);
                 m_CoordRecyclerView.getAdapter().notifyDataSetChanged();
                 CApplicationSettings.saveSettings(this);
             }
