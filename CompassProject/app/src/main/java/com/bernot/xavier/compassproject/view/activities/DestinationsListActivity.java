@@ -58,12 +58,9 @@ public class DestinationsListActivity extends CActivity
         coordAdapter.setOnlongClickListener(new DestinationListAdapter.onLongClickListener() {
             @Override
             public void callback(View view, int position, CGeoCoordinates item) {
-                //m_Toolbar.getMenu().clear();
-                //getMenuInflater().inflate(R.menu.menu_dest_list_item, m_Toolbar.getMenu());
 
                 m_CoordinatesSelected = item;
                 m_PositionCoordinatesSelected = position;
-                //openContextMenu(view);
             }
         });
 

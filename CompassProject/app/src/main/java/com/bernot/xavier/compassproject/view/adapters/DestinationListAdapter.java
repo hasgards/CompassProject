@@ -86,7 +86,14 @@ public class DestinationListAdapter extends RecyclerView.Adapter<DestinationList
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return m_GeoCoordinatesList.size();
+        if(m_GeoCoordinatesList != null)
+        {
+            return m_GeoCoordinatesList.size();
+        }
+        else
+        {
+            return 0;
+        }
     }
 
     // Implement OnClick listener.
