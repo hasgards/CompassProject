@@ -29,7 +29,7 @@ public class CGeoCoordinatesTools
                 add(new CGeoCoordinates(pContext.getString(R.string.place_beijing), 39.9042110, 116.4073950));
                 add(new CGeoCoordinates(pContext.getString(R.string.place_buenos_aires), -34.6870063, -58.3652513));
                 add(new CGeoCoordinates(pContext.getString(R.string.place_cape_town), -33.9248685, 18.4240553));
-                add(new CGeoCoordinates(pContext.getString(R.string.place_dublin), -53.3498053, -6.2603097));
+                add(new CGeoCoordinates(pContext.getString(R.string.place_dublin), 53.3498053, -6.2603097));
                 add(new CGeoCoordinates(pContext.getString(R.string.place_geneva), 46.1983922, 6.1422961));
                 add(new CGeoCoordinates(pContext.getString(R.string.place_hong_kong), 22.2819490, 114.1742133));
                 add(new CGeoCoordinates(pContext.getString(R.string.place_kuala_lumpur), 3.1390030, 101.6868550));

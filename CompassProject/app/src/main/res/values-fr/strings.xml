@@ -1,0 +1,81 @@
+<resources>
+    <string name="app_name">Boussole</string>
+
+    <string name="action_about">A propos</string>
+
+    <string name="common_warning">Avertissement</string>
+    <string name="common_warning_geoloc">Pour utiliser cette </string>
+
+    <string name="compass_set_destination">Choisir la destination</string>
+    <string name="compass_to">Vers : %s</string>
+    <string name="compass_coords">Lat. : %1$1.6f Lon. : %2$1.6f </string>
+    <string name="compass_distance_km">%1$1.3f km</string>
+    <string name="compass_distance_mi">%1$1.3f mi</string>
+    <string name="compass_search">Détermination de votre localisation &#8230;</string>
+    <string name="compass_distance_default">0.000 Km</string>
+
+
+    <string name="about_title">A propos</string>
+    <string name="about_subtitle">A propos de %s</string>
+    <string name="about_text">Créé par by Xavier Bernot</string>
+    <string name="about_version">Version : %s</string>
+    <string name="about_version_error">Impossible de trouver la version du package</string>
+
+    <string name="destchoice_title">%s lieu</string>
+    <string name="destchoice_new">Nouveau</string>
+    <string name="destchoice_edit">Modifier</string>
+    <string name="destchoice_subtitle">Entrez les données de la destination</string>
+    <string name="destchoice_name">Nom de la destination :</string>
+    <string name="destchoice_Latitude">Latitude :</string>
+    <string name="destchoice_Longitude">Longitude :</string>
+    <string name="destchoice_error_name">Veuillez entrer un nom valide</string>
+    <string name="destchoice_use_current">Use current position</string>
+    <string name="destchoice_error_lat">Please provide a number between -90 and +90 .</string>
+    <string name="destchoice_error_lon">Please provide a number between -180 and +180.</string>
+
+    <string name="destchoice_OK">OK</string>
+    <string name="destchoice_Cancel">Annuler</string>
+
+    <string name="help_title">Instructions</string>
+    <string name="help_subtitle1">Bienvenue !</string>
+    <string name="help_text1">Pour calibrer la boussole, veuillez vous rendre sur l\'écran de la boussole et faire tourner votre appareil autour des 3 axes de rotation possibles. Cela fait, la boussole devrait être stabilisée.</string>
+    <string name="help_text2">Réglez votre destination en utilisant le bouton rond sur l\'écran de boussole.</string>
+    <string name="help_text3">Suivez la flèche sur le compas afin d\'atteindre votre destination ! !</string>
+    <string name="help_ok">J\'ai compris !</string>
+
+    <string name="destList_title">Mes lieux</string>
+    <string name="destlist_edit">Modifier</string>
+    <string name="destlist_delete">Supprimer</string>
+
+    <string name="place_alexandria">Alexandrie, Egypte</string>
+    <string name="place_amsterdam">Amsterdam, Pays-Bas</string>
+    <string name="place_auckland">Auckland, Nouvelle-Zélande</string>
+    <string name="place_berlin">Berlin, Allemagne</string>
+    <string name="place_beijing">Beijing, Chine</string>
+    <string name="place_buenos_aires">Buenos Aires, Argentine</string>
+    <string name="place_cape_town">Le Cap, Afrique du Sud</string>
+    <string name="place_dublin">Dublin, Irlande</string>
+    <string name="place_geneva">Genève, Suisse</string>
+    <string name="place_hong_kong">Hong Kong, Chine</string>
+    <string name="place_kuala_lumpur">Kuala Lumpur, Malaysie</string>
+    <string name="place_london">Londres, UK</string>
+    <string name="place_los_angeles">Los Angeles, USA</string>
+    <string name="place_madrid">Madrid, Espagne</string>
+    <string name="place_mexico_city">Mexico, Mexique</string>
+    <string name="place_moscow">Moscou, Russie</string>
+    <string name="place_nairobi">Nairobi, Kenya</string>
+    <string name="place_new_dehli">New Dehli, Inde</string>
+    <string name="place_new_york">New York, USA</string>
+    <string name="place_paris">Paris, France</string>
+    <string name="place_rabat">Rabat, Maroc</string>
+    <string name="place_rio_de_janeiro">Rio de Janeiro, Brésil</string>
+    <string name="place_riyadh">Riyadh, Arabie Saoudite</string>
+    <string name="place_rome">Rome, Italie</string>
+    <string name="place_san_francisco">San Francisco, USA</string>
+    <string name="place_sydney">Sydney, Australie</string>
+    <string name="place_tokyo">Tokyo, Japon</string>
+    <string name="place_toronto">Toronto, Canada</string>
+    <string name="place_vienna">Vienne, Autriche</string>
+    <string name="place_warsaw">Varsovie, Pologne</string>
+
+</resources>

@@ -33,6 +33,11 @@ public class CGeoCoordinates extends Location
             return "";
         }
 
+        if(m_Name.length() == 1 || m_Name.length() == 2)
+        {
+            return m_Name.toUpperCase();
+        }
+
         String result = m_Name;
 
         //remove suffix of name
