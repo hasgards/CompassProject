@@ -29,9 +29,9 @@
     <string name="destchoice_Latitude">Latitude :</string>
     <string name="destchoice_Longitude">Longitude :</string>
     <string name="destchoice_error_name">Veuillez entrer un nom valide</string>
-    <string name="destchoice_use_current">Use current position</string>
-    <string name="destchoice_error_lat">Please provide a number between -90 and +90 .</string>
-    <string name="destchoice_error_lon">Please provide a number between -180 and +180.</string>
+    <string name="destchoice_use_current">Utiliser la position actuelle</string>
+    <string name="destchoice_error_lat">Veillez entrer un nombre situé entre -90 et +90.</string>
+    <string name="destchoice_error_lon">Veillez entrer un nombre situé entre -180 et +180.</string>
 
     <string name="destchoice_OK">OK</string>
     <string name="destchoice_Cancel">Annuler</string>
