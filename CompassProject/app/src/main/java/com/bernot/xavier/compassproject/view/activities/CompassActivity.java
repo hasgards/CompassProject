@@ -5,6 +5,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -38,7 +39,7 @@ public class CompassActivity extends CActivity implements SensorEventListener
     //GPS
     private CGPSTracker m_GPSTracker;
 
-    private CGeoCoordinates m_LastPosition = null;
+    private CGeoCoordinates m_CurrentPosition = null;
 
     //Compass
     private SensorManager m_SensorManager;
@@ -90,11 +91,16 @@ public class CompassActivity extends CActivity implements SensorEventListener
         Sensor msensor = m_SensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
         m_SensorManager.registerListener(this, gsensor, SensorManager.SENSOR_DELAY_GAME);
         m_SensorManager.registerListener(this, msensor, SensorManager.SENSOR_DELAY_GAME);
+
+        m_GPSTracker.setOnLocationChangedListener(m_OnlocationChangedListener);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+
+        m_CurrentPosition = new CGeoCoordinates(m_GPSTracker.getLocation());
+        m_GPSTracker.startUsingGPS();
 
         if(CSession.getInstance().getDestinationCoordinates() != null)
         {
@@ -104,8 +110,8 @@ public class CompassActivity extends CActivity implements SensorEventListener
             //m_CompassFragment.updateDestinationOrientation(CSession.getInstance().getDestinationCoordinates());
 
             //Update only if orientation really changed, compass fragment can provide last known location in this case
-            m_CompassFragment.setOrientation(m_GPSTracker, CSession.getInstance().getDestinationCoordinates(), m_CompassFragment.getOrientation());
-            m_TargetInfosFragment.updateDistanceText(m_CompassFragment.getLastKnownLocation(), CSession.getInstance().getDestinationCoordinates());
+            m_CompassFragment.setOrientation(m_CurrentPosition, CSession.getInstance().getDestinationCoordinates(), m_CompassFragment.getOrientation());
+            m_TargetInfosFragment.updateDistanceText(m_CurrentPosition, CSession.getInstance().getDestinationCoordinates());
 
             //Save the destination
             CApplicationSettings.getInstance().setLastDestinationChoosen(CSession.getInstance().getDestinationCoordinates(), getApplicationContext());
@@ -124,10 +130,8 @@ public class CompassActivity extends CActivity implements SensorEventListener
     }
 
     @Override
-    public void onSensorChanged(SensorEvent sensorEvent)
-    {
-        if(!m_IsActive)
-        {
+    public void onSensorChanged(SensorEvent sensorEvent) {
+        if (!m_IsActive) {
             //Do nothing if not active (avoid background CPU use)
             return;
         }
@@ -135,16 +139,11 @@ public class CompassActivity extends CActivity implements SensorEventListener
         int type = sensorEvent.sensor.getType();
         float[] data;
 
-        if (type == Sensor.TYPE_ACCELEROMETER)
-        {
+        if (type == Sensor.TYPE_ACCELEROMETER) {
             data = m_GData;
-        }
-        else if (type == Sensor.TYPE_MAGNETIC_FIELD)
-        {
+        } else if (type == Sensor.TYPE_MAGNETIC_FIELD) {
             data = m_MData;
-        }
-        else
-        {
+        } else {
             // we should not be here.
             return;
         }
@@ -154,21 +153,38 @@ public class CompassActivity extends CActivity implements SensorEventListener
 
         SensorManager.getRotationMatrix(m_R, m_I, m_GData, m_MData);
         SensorManager.getOrientation(m_R, m_Orientation);
-        final float rad2deg = (float)(180.0f/Math.PI);
+        final float rad2deg = (float) (180.0f / Math.PI);
         float orientation = -1 * m_Orientation[0] * rad2deg;
 
-        //Update only if orientation really changed, compass fragment can provide last known location in this case
-        if (m_CompassFragment != null && m_CompassFragment.setOrientation(m_GPSTracker, CSession.getInstance().getDestinationCoordinates(), orientation))
+        if (m_CompassFragment != null)
         {
-            m_TargetInfosFragment.updateDistanceText(m_CompassFragment.getLastKnownLocation(), CSession.getInstance().getDestinationCoordinates());
+            m_CompassFragment.setOrientation(m_CurrentPosition, CSession.getInstance().getDestinationCoordinates(), orientation);
         }
     }
-
     @Override
     public void onAccuracyChanged(Sensor sensor, int i)
     {
 
     }
+
+    private CGPSTracker.onLocationChangedListener m_OnlocationChangedListener = new CGPSTracker.onLocationChangedListener() {
+        @Override
+        public void callback(Location pLocation) {
+
+            if(!m_IsActive)
+            {
+                return;
+            }
+
+            m_CurrentPosition = new CGeoCoordinates(pLocation);
+
+            if(m_TargetInfosFragment != null)
+            {
+                m_TargetInfosFragment.updateDistanceText(m_CurrentPosition, CSession.getInstance().getDestinationCoordinates());
+            }
+
+        }
+    };
 
     /**
      * Click on destination choice
@@ -178,4 +194,5 @@ public class CompassActivity extends CActivity implements SensorEventListener
     {
         switchActivity(DestinationsListActivity.class);
     }
+
 }

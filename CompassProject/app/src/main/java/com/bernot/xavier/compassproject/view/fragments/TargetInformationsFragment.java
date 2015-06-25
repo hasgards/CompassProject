@@ -21,6 +21,9 @@ import static java.lang.String.format;
  */
 public class TargetInformationsFragment extends Fragment
 {
+    private final static String ACCURACY_100_FORMAT = "%1.1f";
+    private final static String ACCURACY_10_FORMAT = "%1.2f";
+    private final static String ACCURACY_1_FORMAT = "%1.3f";
 
     private TextView m_DistanceTextView;
     private TextView m_TargetNameTextView;
@@ -30,6 +33,8 @@ public class TargetInformationsFragment extends Fragment
     private static final float MILE_KM_RATIO = 1.609344f;
 
     private float m_PreviousDistance;
+    private float m_PreviousAccuracy;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -89,11 +94,12 @@ public class TargetInformationsFragment extends Fragment
      */
     public void updateDistanceText(CGeoCoordinates pCurrentLocation, CGeoCoordinates pDestination)
     {
-        if(pCurrentLocation != null)
+        if(pCurrentLocation != null && pDestination != null)
         {
             m_PreviousDistance = pCurrentLocation.distanceTo(pDestination) / 1000;
+            m_PreviousAccuracy = pCurrentLocation.getAccuracy();
 
-            updateDistanceText(m_PreviousDistance);
+            updateDistanceText(m_PreviousDistance, m_PreviousAccuracy);
 
             if (m_PositionTextView != null)
             {
@@ -119,19 +125,41 @@ public class TargetInformationsFragment extends Fragment
      * update the distance from current location to CGeoCoordinates provided
      * @param pDistanceInKm distance in KM
      */
-    private void updateDistanceText(float pDistanceInKm)
+    private void updateDistanceText(float pDistanceInKm, float pAccuracy)
     {
+        float distance = pDistanceInKm;
+        if(CApplicationSettings.getInstance().getUnit() == ELengthUnit.MILE)
+        {
+            pAccuracy = pAccuracy / MILE_KM_RATIO;
+            distance = pDistanceInKm / MILE_KM_RATIO;
+        }
+
+        String distanceFormat;
+        if(pAccuracy > 200)
+        {
+            distanceFormat = ACCURACY_100_FORMAT;
+        }
+        else if(pAccuracy > 20)
+        {
+            distanceFormat = ACCURACY_10_FORMAT;
+        }
+        else
+        {
+            distanceFormat = ACCURACY_1_FORMAT;
+        }
+
         if (m_DistanceTextView != null)
         {
             if(CApplicationSettings.getInstance().getUnit() == ELengthUnit.KILOMETER)
             {
-                m_DistanceTextView.setText(format(getString(R.string.compass_distance_km), pDistanceInKm));
+                m_DistanceTextView.setText(format(getString(R.string.compass_distance_km), format( distanceFormat,distance)));
             }
             else
             {
-                m_DistanceTextView.setText(format(getString(R.string.compass_distance_mi), pDistanceInKm / MILE_KM_RATIO));
+                m_DistanceTextView.setText(format(getString(R.string.compass_distance_mi), format(distanceFormat,distance)));
             }
         }
+
     }
 
 
@@ -150,6 +178,6 @@ public class TargetInformationsFragment extends Fragment
             CApplicationSettings.getInstance().setUnit(ELengthUnit.KILOMETER, pContext);
         }
 
-        updateDistanceText(m_PreviousDistance);
+        updateDistanceText(m_PreviousDistance, m_PreviousAccuracy);
     }
 }

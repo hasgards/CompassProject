@@ -77,22 +77,15 @@ public class RotatingCompassFragment extends Fragment
      * @param pDeviceOrientation currentorientation of device in degrees (from -180 to +180)
      * @return true if the compass orientation really changed
      */
-    public boolean setOrientation(CGPSTracker pTracker, CGeoCoordinates pDestination, float pDeviceOrientation)
+    public boolean setOrientation(CGeoCoordinates pCurrentPosition, CGeoCoordinates pDestination, float pDeviceOrientation)
     {
         //Update UI only if difference of step
         if(Math.abs(pDeviceOrientation - m_PreviousOrientation) > UPDATE_STEP
-                && pTracker != null
+                && pCurrentPosition != null
                 && pDestination != null
                 && pDeviceOrientation <= 180f && pDeviceOrientation >= -180f)
         {
-
-            Location currentLocation = pTracker.getLocation();
-            if(currentLocation == null)
-            {
-                return false;
-            }
-
-            m_LastKnownLocation = new CGeoCoordinates(currentLocation);
+            m_LastKnownLocation = new CGeoCoordinates(pCurrentPosition);
 
             float destOrientation = m_LastKnownLocation.bearingTo(pDestination) + pDeviceOrientation;
 

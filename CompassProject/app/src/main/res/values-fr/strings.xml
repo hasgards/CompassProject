@@ -9,9 +9,9 @@
     <string name="compass_set_destination">Choisir la destination</string>
     <string name="compass_to">Vers : %s</string>
     <string name="compass_coords">Lat. : %1$1.6f Lon. : %2$1.6f </string>
-    <string name="compass_distance_km">%1$1.3f km</string>
-    <string name="compass_distance_mi">%1$1.3f mi</string>
-    <string name="compass_search">Détermination de votre localisation &#8230;</string>
+    <string name="compass_distance_km">%1$s km</string>
+    <string name="compass_distance_mi">%1$s mi</string>
+    <string name="compass_search">Recherche de votre localisation &#8230;</string>
     <string name="compass_distance_default">0.000 Km</string>
 
 

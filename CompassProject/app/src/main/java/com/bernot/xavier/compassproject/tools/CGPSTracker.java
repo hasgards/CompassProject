@@ -1,7 +1,9 @@
 package com.bernot.xavier.compassproject.tools;
 
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
+import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -25,55 +27,81 @@ public class CGPSTracker  extends Service implements LocationListener {
     private boolean m_IsNetworkEnabled = false;
 
     // Flag for GPS status
-    private boolean m_CanGetLocation = false;
+    //private boolean m_CanGetLocation = false;
+
+    // Flag for GPS status
+    private boolean m_IsGPSStarted = false;
+    public boolean isGPSStarted() {
+        return m_IsGPSStarted;
+    }
+
 
     private Location m_Location; // Location
     private double m_Latitude; // Latitude
     private double m_Longitude; // Longitude
 
     // The minimum distance to change Updates in meters
-    private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10; // 10 meters
+    private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 1; // 10 meters
 
     // The minimum time between updates in milliseconds
-    private static final long MIN_TIME_BW_UPDATES = 1000 * 60 * 1; // 1 minut
+    private static final long MIN_TIME_BW_UPDATES = 1000 * 5; // 5 seconds
+
+    private onLocationChangedListener m_OnLocationChangedListener;
+    public void setOnLocationChangedListener(onLocationChangedListener pOnLocationChangedListener) {
+        this.m_OnLocationChangedListener = pOnLocationChangedListener;
+    }
 
     // Declaring a Location Manager
-    protected LocationManager locationManager;
+    protected LocationManager m_LocationManager;
 
-    public CGPSTracker(Context context)
+    /**
+     * CTOR from context, will automatically get last known location
+     * @param pContext
+     */
+    public CGPSTracker(Context pContext)
     {
-        this.m_Context = context;
+        this.m_Context = pContext;
         getLocation();
     }
 
     /**
+     * CTOR from context, will get last know location if pGetLocation = true
+     * @param pContext
+     * @param
+     */
+    private CGPSTracker(Context pContext, boolean pGetLocation)
+    {
+        this.m_Context = pContext;
+        if(pGetLocation)
+        {
+            getLocation();
+        }
+    }
+
+
+    /**
      * Returns the last known location from GPS
-     * @return lastKnown location
+     * @return last known location
      */
     public Location getLocation() {
         try
         {
-            locationManager = (LocationManager) m_Context.getSystemService(LOCATION_SERVICE);
+            LocationManager locationManager = (LocationManager) m_Context.getSystemService(LOCATION_SERVICE);
 
-            // Getting GPS status
-            m_IsGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-
-            // Getting network status
-            m_IsNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-
-            if (!m_IsGPSEnabled && !m_IsNetworkEnabled)
+            if (!canGetLocation(locationManager))
             {
                 // No network provider is enabled
             }
             else
             {
-                this.m_CanGetLocation = true;
                 if (m_IsNetworkEnabled)
                 {
+                    CGPSTracker gpsTracker = new CGPSTracker(m_Context, false);
+
                     locationManager.requestLocationUpdates(
                             LocationManager.NETWORK_PROVIDER,
                             MIN_TIME_BW_UPDATES,
-                            MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
+                            MIN_DISTANCE_CHANGE_FOR_UPDATES, gpsTracker);
 
                     if (locationManager != null)
                     {
@@ -85,16 +113,18 @@ public class CGPSTracker  extends Service implements LocationListener {
                             m_Longitude = m_Location.getLongitude();
                         }
                     }
+                    locationManager.removeUpdates(gpsTracker);
                 }
                 // If GPS enabled, get latitude/longitude using GPS Services
                 if (m_IsGPSEnabled)
                 {
                     if (m_Location == null)
                     {
+                        CGPSTracker gpsTracker = new CGPSTracker(m_Context, false);
                         locationManager.requestLocationUpdates(
                                 LocationManager.GPS_PROVIDER,
                                 MIN_TIME_BW_UPDATES,
-                                MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
+                                MIN_DISTANCE_CHANGE_FOR_UPDATES, null, null);
 
                         if (locationManager != null)
                         {
@@ -106,6 +136,7 @@ public class CGPSTracker  extends Service implements LocationListener {
                                 m_Longitude = m_Location.getLongitude();
                             }
                         }
+                        locationManager.removeUpdates(gpsTracker);
                     }
                 }
             }
@@ -118,12 +149,55 @@ public class CGPSTracker  extends Service implements LocationListener {
     }
 
     /**
+     * Starts to use the GPS Listener
+     */
+    public void startUsingGPS(){
+
+        if(m_IsGPSStarted)
+        {
+            return;
+        }
+
+        if(m_LocationManager == null)
+        {
+            m_LocationManager = (LocationManager) m_Context.getSystemService(LOCATION_SERVICE);
+
+            if(m_LocationManager == null)
+            {
+                return;
+            }
+        }
+
+        /*Criteria criteria = new Criteria();
+        criteria.setAccuracy(Criteria.ACCURACY_FINE);
+        criteria.setAltitudeRequired(false);//true if required
+        criteria.setBearingRequired(false);//true if required
+        criteria.setCostAllowed(true);
+        criteria.setPowerRequirement(Criteria.POWER_MEDIUM);*/
+        m_LocationManager.requestLocationUpdates(
+                LocationManager.GPS_PROVIDER,
+                MIN_TIME_BW_UPDATES,
+                MIN_DISTANCE_CHANGE_FOR_UPDATES,
+                this);
+
+        m_LocationManager.requestLocationUpdates(
+                LocationManager.NETWORK_PROVIDER,
+                MIN_TIME_BW_UPDATES,
+                MIN_DISTANCE_CHANGE_FOR_UPDATES,
+                this);
+
+        m_IsGPSStarted = true;
+    }
+
+    /**
      * Stop using GPS listener
-     * Calling this function will stop using GPS in your app.
+     * Calling this function will stop using GPS
      * */
     public void stopUsingGPS(){
-        if(locationManager != null){
-            locationManager.removeUpdates(CGPSTracker.this);
+        if(m_LocationManager != null){
+            m_LocationManager.removeUpdates(CGPSTracker.this);
+            m_LocationManager.removeUpdates(CGPSTracker.this);
+            m_IsGPSStarted = false;
         }
     }
 
@@ -162,12 +236,57 @@ public class CGPSTracker  extends Service implements LocationListener {
      * @return boolean
      * */
     public boolean canGetLocation() {
-        return this.m_CanGetLocation;
+        try
+        {
+            LocationManager locationManager = (LocationManager) m_Context.getSystemService(LOCATION_SERVICE);
+            return canGetLocation(locationManager);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    /**
+     * Function to check GPS/Wi-Fi enabled using a particular locationManager
+     * @param pLocationManager location manager
+     * @return boolean
+     * */
+    private boolean canGetLocation(LocationManager pLocationManager)
+    {
+        try
+        {
+            if(pLocationManager == null)
+            {
+                return false;
+            }
+
+            // Getting GPS status
+            m_IsGPSEnabled = pLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+
+            // Getting network status
+            m_IsNetworkEnabled = pLocationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+
+            if (!m_IsGPSEnabled && !m_IsNetworkEnabled) {
+                // No network provider is enabled
+                return false;
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 
 
     @Override
     public void onLocationChanged(Location location) {
+        if (this.m_OnLocationChangedListener != null)
+        {
+            m_Location = location;
+            this.m_OnLocationChangedListener.callback(location);
+        }
     }
 
 
@@ -189,5 +308,9 @@ public class CGPSTracker  extends Service implements LocationListener {
     @Override
     public IBinder onBind(Intent arg0) {
         return null;
+    }
+
+    public interface onLocationChangedListener {
+        public void callback(Location pLocation);
     }
 }
