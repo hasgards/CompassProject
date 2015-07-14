@@ -99,7 +99,13 @@ public class CompassActivity extends CActivity implements SensorEventListener
     protected void onResume() {
         super.onResume();
 
-        m_CurrentPosition = new CGeoCoordinates(m_GPSTracker.getLocation());
+        Location location = m_GPSTracker.getLocation();
+
+        if(location != null)
+        {
+            m_CurrentPosition = new CGeoCoordinates(m_GPSTracker.getLocation());
+        }
+
         m_GPSTracker.startUsingGPS();
 
         if(CSession.getInstance().getDestinationCoordinates() != null)
